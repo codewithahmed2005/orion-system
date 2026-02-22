@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Orion System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <!-- Top Border -->
+
+   <div class="svg-frame">
+        <svg viewBox="-40 0 1200 140" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <filter id="glow" x="-50%" y="-300%" width="200%" height="700%">
+                    <feGaussianBlur stdDeviation="8" result="b" />
+                    <feColorMatrix in="b" type="matrix" values="0 0 0 0 0 0 0 0 0 0.749 0 0 0 0 1 0 0 0 0.8 0" />
+                    <feMerge>
+                        <feMergeNode />
+                        <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                </filter>
+                <filter id="glowFast" x="-50%" y="-50%" width="200%" height="200%">
+                    <feGaussianBlur stdDeviation="3" result="b" />
+                    <feColorMatrix in="b" type="matrix" values="0 0 0 0 0 0 0 0 0 0.85 0 0 0 0 1 0 0 0 0.9 0" />
+                    <feMerge>
+                        <feMergeNode />
+                        <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                </filter>
+                <linearGradient id="lineGrad" x1="0%" x2="100%" y1="0%" y2="0%">
+                    <stop offset="0" stop-color="rgba(0,191,255,0.25)" />
+                    <stop offset="0.18" stop-color="rgba(255,255,255,0.95)" />
+                    <stop offset="0.5" stop-color="rgba(0,191,255,0.95)" />
+                    <stop offset="0.82" stop-color="rgba(255,255,255,0.6)" />
+                    <stop offset="1" stop-color="rgba(0,191,255,0.25)" />
+                </linearGradient>
+            </defs>
+            <g transform="translate(20,20)">
+                <g transform="translate(0,-15)" opacity="0.95">
+                    <rect x="12" y="34" width="1035" height="45" rx="8" fill="rgba(0, 150, 255, 0.18)"
+                        stroke="rgba(0, 200, 255, 0.65)" stroke-width="1.4"
+                        style="filter: blur(3px) drop-shadow(0 0 6px rgba(0,180,255,0.8));"></rect>
+                </g>
+                <g transform="translate(0,8)" opacity="0.25">
+                    <path d="M10 30 H200 l35 10 H1020 l28 -12" fill="none" stroke="rgba(0,0,0,0.6)"
+                        stroke-linecap="round" stroke-linejoin="round" stroke-width="10" style="filter: blur(6px);" />
+                </g>
+                <g transform="translate(0,0)" opacity="0.68">
+                    <path d="M10 28 H220 l35 10 H1020 l28 -12" fill="none" stroke="url(#lineGrad)"
+                        stroke-linecap="round" stroke-linejoin="round" stroke-width="5" filter="url(#glow)" />
+                    <path d="M10 30 H200 l35 10 H1020 l28 -12" fill="none" stroke="#bbffff" stroke-linecap="round"
+                        stroke-linejoin="round" stroke-width="1.4" />
+                    <g class="spark" opacity="0.55">
+                        <circle cx="200" cy="28" r="4" fill="#bfffff" filter="url(#glowFast)" />
+                        <circle cx="420" cy="34" r="3.2" fill="#bfffff" filter="url(#glowFast)" />
+                        <rect x="640" y="24" width="6" height="2" rx="1" fill="#dffeff" transform="rotate(3 643 25)"
+                            filter="url(#glowFast)" />
+                    </g>
+                </g>
+                <g transform="translate(0,6)" opacity="1">
+                    <path d="M10 30 H200 l35 10 H1020 l28 -12" fill="none" stroke="url(#lineGrad)"
+                        stroke-linecap="round" stroke-linejoin="round" stroke-width="6" filter="url(#glow)" />
+                    <path d="M10 30 H200 l35 10 H1020 l28 -12" fill="none" stroke="#ffffff" stroke-linecap="round"
+                        stroke-linejoin="round" stroke-width="2" />
+                </g>
+                <g transform="translate(0,12)" opacity="0.48">
+                    <path d="M10 32 H180 l35 10 H1020 l28 -12" fill="none" stroke="rgba(0,191,255,0.35)"
+                        stroke-linecap="round" stroke-linejoin="round" stroke-width="4" />
+                </g>
+                <g transform="translate(430,36)" opacity="0.18">
+                    <rect x="0" y="0" width="6" height="36" rx="2" fill="rgba(0,191,255,0.12)"
+                        style="filter: blur(1px)" />
+                    <rect x="60" y="0" width="4" height="24" rx="2" fill="rgba(0,191,255,0.10)"
+                        style="filter: blur(1px)" />
+                </g>
+            </g>
+        </svg>
+    </div>
+
+<div class="main-container">
+    <div class="main-content">
+
+        <div class="system-header">
+            <span class="system-header-label">ORION SYSTEM</span>
+            <div class="system-ping"></div>
+        </div>
+
+        <div class="log-window" id="logWindow">
+            <div class="log-line system">
+                <span class="prefix">&gt; SYSTEM:</span> Interface initialized.
+            </div>
+        </div>
+
+        <div class="console-input">
+            <span class="prompt">&gt;</span>
+            <input type="text" id="userInput" placeholder="Enter message..." autocomplete="off">
+            <button id="sendBtn">SEND</button>
+        </div>
+
+    </div>
+</div>
+
+<!-- Bottom border -->
+
+    <div class="svg-frame">
+        <svg viewBox="-40 0 1200 140" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <filter id="glow2" x="-50%" y="-300%" width="200%" height="700%">
+                    <feGaussianBlur stdDeviation="8" result="b" />
+                    <feColorMatrix in="b" type="matrix" values="0 0 0 0 0 0 0 0 0 0.749 0 0 0 0 1 0 0 0 0.8 0" />
+                    <feMerge>
+                        <feMergeNode />
+                        <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                </filter>
+                <filter id="glowFast2" x="-50%" y="-50%" width="200%" height="200%">
+                    <feGaussianBlur stdDeviation="3" result="b" />
+                    <feColorMatrix in="b" type="matrix" values="0 0 0 0 0 0 0 0 0 0.85 0 0 0 0 1 0 0 0 0.9 0" />
+                    <feMerge>
+                        <feMergeNode />
+                        <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                </filter>
+                <linearGradient id="lineGrad2" x1="0%" x2="100%" y1="0%" y2="0%">
+                    <stop offset="0" stop-color="rgba(0,191,255,0.25)" />
+                    <stop offset="0.18" stop-color="rgba(255,255,255,0.95)" />
+                    <stop offset="0.5" stop-color="rgba(0,191,255,0.95)" />
+                    <stop offset="0.82" stop-color="rgba(255,255,255,0.6)" />
+                    <stop offset="1" stop-color="rgba(0,191,255,0.25)" />
+                </linearGradient>
+            </defs>
+            <g transform="translate(20,20)">
+                <g transform="translate(0,-15)" opacity="0.95">
+                    <rect x="-60" y="34" width="1170" height="45" rx="8" fill="rgba(0, 150, 255, 0.18)"
+                        stroke="rgba(0, 200, 255, 0.65)" stroke-width="1.4"
+                        style="filter: blur(3px) drop-shadow(0 0 6px rgba(0,180,255,0.8));"></rect>
+                </g>
+                <g transform="translate(0,8)" opacity="0.25">
+                    <path d="M-60 30 H-50 l10 10 H1090 l28 0" fill="none" stroke="rgba(0,0,0,0.6)"
+                        stroke-linecap="round" stroke-linejoin="round" stroke-width="10" style="filter: blur(6px);" />
+                </g>
+                <g transform="translate(0,0)" opacity="0.68">
+                    <path d="M-60 28 H-50 l10 10 H1090 l28 0" fill="none" stroke="url(#lineGrad2)"
+                        stroke-linecap="round" stroke-linejoin="round" stroke-width="5" filter="url(#glow2)" />
+                    <path d="M-60 30 H-50 l10 10 H1090 l28 0" fill="none" stroke="#bbffff" stroke-linecap="round"
+                        stroke-linejoin="round" stroke-width="1.4" />
+                    <g class="spark" opacity="0.55">
+                        <circle cx="200" cy="28" r="4" fill="#bfffff" filter="url(#glowFast2)" />
+                        <circle cx="420" cy="34" r="3.2" fill="#bfffff" filter="url(#glowFast2)" />
+                        <rect x="640" y="24" width="6" height="2" rx="1" fill="#dffeff" transform="rotate(3 643 25)"
+                            filter="url(#glowFast2)" />
+                    </g>
+                </g>
+                <g transform="translate(0,6)" opacity="1">
+                    <path d="M-60 30 H-55 l10 10 H1090 l28 0" fill="none" stroke="url(#lineGrad2)"
+                        stroke-linecap="round" stroke-linejoin="round" stroke-width="6" filter="url(#glow2)" />
+                    <path d="M-60 30 H-55 l10 10 H1090 l28 0" fill="none" stroke="#ffffff" stroke-linecap="round"
+                        stroke-linejoin="round" stroke-width="2" />
+                </g>
+                <g transform="translate(0,12)" opacity="0.48">
+                    <path d="M-60 32 H-50 l10 10 H1090 l28 0" fill="none" stroke="rgba(0,191,255,0.35)"
+                        stroke-linecap="round" stroke-linejoin="round" stroke-width="4" />
+                </g>
+                <g transform="translate(430,36)" opacity="0.18">
+                    <rect x="0" y="0" width="6" height="36" rx="2" fill="rgba(0,191,255,0.12)"
+                        style="filter: blur(1px)" />
+                    <rect x="60" y="0" width="4" height="24" rx="2" fill="rgba(0,191,255,0.10)"
+                        style="filter: blur(1px)" />
+                </g>
+            </g>
+        </svg>
+    </div>
+
+<script src="{{ url_for('static', filename='js/chat.js') }}"></script>
+</body>
+</html>
