@@ -1,260 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        :root {
-            --neon: #00bfff;
-            --bg1: #021024;
-            --bg2: #01030a;
-        }
-
-        html,
-        body {
-            height: 100%;
-            margin: 0;
-            background: radial-gradient(circle at 50% 35%, #07213a 0%, var(--bg1) 35%, var(--bg2) 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            overflow: hidden;
-            font-family: "Courier New", monospace;
-            opacity: 0;
-            animation: pageFadeIn 1s ease-out forwards;
-        }
-
-        @keyframes pageFadeIn {
-            from {
-                opacity: 0;
-                transform: scale(0.95);
-            }
-
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-
-        .svg-frame {
-            width: 1100px;
-            position: relative;
-            /* z-index: 2;
-            opacity: 0; */
-            transform: translateY(10px);
-        }
-
-        /* main container style  */
-        .main-container {
-            width: 860px;
-            height: 350px;
-            background: transparent;
-            /* background: rgba(0, 0, 0, 0.22); */
-            border: 2px solid rgba(241, 241, 241, 0.801);
-            border-radius: 0;
-            box-shadow:
-                0 0 20px rgba(0, 255, 255, 0.8),
-                inset 0 0 15px rgba(0, 255, 255, 0.5);
-            backdrop-filter: blur(8px);
-            margin: -10px auto;
-
-            /* ⭐ ANGLED SYSTEM SHAPE ⭐ */
-            clip-path: polygon(6% 0%, 92% 0%, 100% 100%, 100% 100%,
-                    96% 100%, 6% 100%, 0% 100%, 7% 0%);
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: monospace;
-            font-size: 20px;
-            color: cyan;
-        }
-
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: scale(0.95);
-            }
-
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        /* main content style  */
-
-        .main-content {
-            width: 90%;
-            height: 90%;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        /* Header */
-        .system-header {
-            text-align: center;
-            font-size: 18px;
-            font-weight: bold;
-            color: cyan;
-            padding: 4px 0;
-            border-bottom: 1px solid cyan;
-            text-shadow: 0 0 10px cyan;
-        }
-
-        /* Chat Window */
-        .chat-window {
-            flex: 1;
-            margin: 10px 0;
-            padding: 10px;
-            overflow-y: auto;
-            scrollbar-width: thin;
-            scrollbar-color: cyan transparent;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-
-        .chat-window::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        .chat-window::-webkit-scrollbar-thumb {
-            background: cyan;
-            border-radius: 4px;
-        }
-
-        .message {
-            padding: 8px 14px;
-            max-width: 75%;
-            border-radius: 8px;
-            font-size: 14px;
-            animation: msgPop 0.3s ease;
-        }
-
-        @keyframes msgPop {
-            from {
-                transform: translateY(10px);
-                opacity: 0;
-            }
-
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        .message.bot {
-            background: rgba(0, 255, 255, 0.15);
-            align-self: flex-start;
-            border: 1px solid cyan;
-        }
-
-        .message.user {
-            background: rgba(255, 255, 255, 0.12);
-            align-self: flex-end;
-            border: 1px solid #66e0ff;
-        }
-
-        /* HUD */
-        .status-hud {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: cyan;
-            font-size: 12px;
-        }
-
-        .xp-bar {
-            flex: 1;
-            height: 6px;
-            background: rgba(0, 255, 255, 0.2);
-            margin: 0 8px;
-            border-radius: 5px;
-            overflow: hidden;
-        }
-
-        .xp-fill {
-            height: 100%;
-            width: 10%;
-            background: cyan;
-            box-shadow: 0 0 8px cyan;
-        }
-
-        /* Input */
-        .input-area {
-            display: flex;
-            gap: 10px;
-        }
-
-        .input-area input {
-            flex: 1;
-            padding: 10px;
-            background: transparent;
-            border: 1px solid cyan;
-            color: cyan;
-            border-radius: 6px;
-            outline: none;
-        }
-
-        .input-area button {
-            padding: 10px 20px;
-            border: none;
-            background: cyan;
-            color: black;
-            font-weight: bold;
-            cursor: pointer;
-            border-radius: 6px;
-            transition: .2s;
-        }
-
-        .input-area button:hover {
-            background: white;
-        }
-
-
-        /* .svg-frame:first-child {
-            animation: frameSlideDown 0.6s ease-out 0.6s forwards;
-        }
-
-        .svg-frame:last-child {
-            animation: frameSlideUp 0.6s ease-out 0.6s forwards;
-        }
-
-        @keyframes frameSlideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes frameSlideUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        } */
-    </style>
+    <title>Orion System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
-
 <body>
-    <div class="svg-frame">
+
+    <!-- Top Border -->
+
+   <div class="svg-frame">
         <svg viewBox="-40 0 1200 140" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
             <defs>
                 <filter id="glow" x="-50%" y="-300%" width="200%" height="700%">
@@ -322,37 +77,32 @@
             </g>
         </svg>
     </div>
-    <!-- 🔹 NEW MAIN CENTER AREA -->
-    <div class="main-container">
-        <div class="main-content">
 
-            <!-- System Header -->
-            <div class="system-header">
-                ORION SYSTEM
-            </div>
+<div class="main-container">
+    <div class="main-content">
 
-            <!-- Message Window -->
-            <div class="chat-window" id="chatWindow">
-                <div class="message bot">Initializing… Welcome Player.</div>
-            </div>
+        <div class="system-header">
+            <span class="system-header-label">ORION SYSTEM</span>
+            <div class="system-ping"></div>
+        </div>
 
-            <!-- Status HUD -->
-            <div class="status-hud">
-                <span>LVL: 1</span>
-                <div class="xp-bar">
-                    <div class="xp-fill"></div>
-                </div>
-                <span>XP: 0%</span>
-            </div>
-
-            <!-- Input Area -->
-            <div class="input-area">
-                <input type="text" id="userInput" placeholder="Type your command...">
-                <button onclick="sendMsg()">SEND</button>
+        <div class="log-window" id="logWindow">
+            <div class="log-line system">
+                <span class="prefix">&gt; SYSTEM:</span> Interface initialized.
             </div>
         </div>
 
+        <div class="console-input">
+            <span class="prompt">&gt;</span>
+            <input type="text" id="userInput" placeholder="Enter message..." autocomplete="off">
+            <button id="sendBtn">SEND</button>
+        </div>
+
     </div>
+</div>
+
+<!-- Bottom border -->
+
     <div class="svg-frame">
         <svg viewBox="-40 0 1200 140" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
             <defs>
@@ -421,30 +171,7 @@
             </g>
         </svg>
     </div>
-    </div>
-    <script>
-    function sendMsg() {
-        let i = document.getElementById("userInput");
-        let txt = i.value.trim();
-        if (!txt) return;
-        
-        addMsg(txt, "user");
-        i.value = "";
-        i.focus();
-    
-        setTimeout(()=>{
-            addMsg("Processing command…", "bot");
-        }, 700);
-    }
-    
-    function addMsg(text, type) {
-        let box = document.getElementById("chatWindow");
-        let el = document.createElement("div");
-        el.className = `message ${type}`;
-        el.innerText = text;
-        box.appendChild(el);
-        box.scrollTop = box.scrollHeight;
-    }
-    </script>
+
+<script src="{{ url_for('static', filename='js/chat.js') }}"></script>
 </body>
 </html>
