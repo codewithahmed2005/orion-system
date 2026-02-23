@@ -386,4 +386,67 @@
             opacity: 0.8;
         }
 
-        
+        /* ================= FULL RESPONSIVE LAYER ================= */
+
+        /* Tablet */
+        @media (max-width: 1024px) {
+
+            .svg-frame {
+                width: 95%;
+                max-width: 1100px;
+            }
+
+            .main-container {
+                width: 95%;
+                height: auto;
+                min-height: 380px;
+            }
+
+            .main-content {
+                font-size: 12px;
+            }
+
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+
+            .svg-frame {
+                width: 100%;
+            }
+
+            .svg-frame svg {
+                width: 100%;
+                height: auto;
+            }
+
+            .main-container {
+                width: 95%;
+                min-height: 420px;
+                height: auto;
+
+                /* simplified but safe angled shape */
+                clip-path: polygon(4% 0%, 96% 0%, 100% 100%, 96% 100%, 4% 100%, 0% 100%);
+            }
+
+            .system-header {
+                font-size: 10px;
+                letter-spacing: 0.1em;
+            }
+
+            .console-input {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 6px;
+            }
+
+            .console-input input {
+                width: 100%;
+                font-size: 12px;
+            }
+
+            .console-input button {
+                width: 100%;
+            }
+
+        }
