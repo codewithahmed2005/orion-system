@@ -9,11 +9,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    -webkit-transform: translateZ(0);
-    -moz-transform: translateZ(0);
-    -ms-transform: translateZ(0);
-    -o-transform: translateZ(0);
-    transform: translateZ(0);
 }
 
 html, body {
@@ -23,9 +18,13 @@ html, body {
     display: flex;
     font-family: "Courier New", monospace;
     overflow: hidden;
-    opacity: 1;
-    animation: none;
-    -webkit-overflow-scrolling: touch;
+    opacity: 0;
+    animation: pageFadeIn 1s ease-out forwards;
+}
+
+@keyframes pageFadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
 }
 
 /* ========== SIDEBAR ========== */
@@ -38,8 +37,10 @@ html, body {
     flex-direction: column;
     flex-shrink: 0;
     margin-left: 0 !important;
-    transform: translateZ(0);
-    will-change: transform;
+}
+
+.sidebar.collapsed {
+    margin-left: 0 !important;
 }
 
 .sidebar-header {
@@ -70,12 +71,13 @@ html, body {
     align-items: center;
     justify-content: center;
     gap: 8px;
-    transition: all 0.2s;
+    transition: all 0.3s;
 }
 
 .new-chat-btn:hover {
     background: var(--neon);
     color: var(--bg2);
+    box-shadow: 0 0 15px rgba(0, 191, 255, 0.5);
 }
 
 .new-chat-btn span {
@@ -87,7 +89,6 @@ html, body {
     flex: 1;
     overflow-y: auto;
     padding: 10px;
-    -webkit-overflow-scrolling: touch;
 }
 
 .chat-list::-webkit-scrollbar {
@@ -105,7 +106,7 @@ html, body {
     background: rgba(0, 191, 255, 0.05);
     border: 1px solid transparent;
     cursor: pointer;
-    transition: all 0.15s;
+    transition: all 0.2s;
     position: relative;
 }
 
@@ -117,6 +118,7 @@ html, body {
 .chat-item.active {
     background: rgba(0, 191, 255, 0.25);
     border-color: var(--neon);
+    box-shadow: 0 0 10px rgba(0, 191, 255, 0.3);
 }
 
 .chat-item-title {
@@ -158,6 +160,7 @@ html, body {
 
 .chat-action-btn:hover {
     opacity: 1;
+    text-shadow: 0 0 5px var(--neon);
 }
 
 .loading-chats, .empty-chats {
@@ -176,7 +179,6 @@ html, body {
     justify-content: center;
     position: relative;
     min-width: 0;
-    transform: translateZ(0);
 }
 
 /* ========== SIDEBAR TOGGLE ========== */
@@ -192,20 +194,36 @@ html, body {
     cursor: pointer;
     font-size: 16px;
     z-index: 100;
-    transition: all 0.2s;
+    transition: all 0.3s;
 }
 
 .sidebar-toggle:hover {
     background: var(--neon);
     color: var(--bg2);
+    box-shadow: 0 0 15px rgba(0, 191, 255, 0.5);
 }
 
-/* ========== SVG FRAMES ========== */
+/* ========== SVG FRAMES - ORIGINAL STYLING ========== */
 .svg-frame {
     width: 1100px;
     position: relative;
     flex-shrink: 0;
-    transform: translateZ(0);
+}
+
+.svg-frame svg {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Spark animation for top border */
+.svg-frame.top .spark {
+    animation: sparkle 2s ease-in-out infinite;
+}
+
+@keyframes sparkle {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 0.8; }
 }
 
 /* ========== MAIN CONTAINER ========== */
@@ -227,17 +245,21 @@ html, body {
     font-family: monospace;
     font-size: 20px;
     color: cyan;
-    animation: framePulse 3s ease-in-out infinite;
-    transform: translateZ(0);
-    will-change: box-shadow;
+    animation: framePulse 2.5s ease-in-out infinite;
 }
 
 @keyframes framePulse {
-    0%, 100% {
-        box-shadow: 0 0 15px rgba(0, 255, 255, 0.5), inset 0 0 12px rgba(0, 255, 255, 0.4);
+    0% {
+        box-shadow: 0 0 14px rgba(0, 255, 255, 0.4), inset 0 0 10px rgba(0, 255, 255, 0.3);
+        border-color: rgba(230, 230, 230, 0.9);
     }
     50% {
-        box-shadow: 0 0 25px rgba(0, 255, 255, 0.9), inset 0 0 20px rgba(0, 255, 255, 0.6);
+        box-shadow: 0 0 25px rgba(0, 255, 255, 0.9), inset 0 0 18px rgba(0, 255, 255, 0.7);
+        border-color: #ffffff;
+    }
+    100% {
+        box-shadow: 0 0 14px rgba(0, 255, 255, 0.4), inset 0 0 10px rgba(0, 255, 255, 0.3);
+        border-color: rgba(230, 230, 230, 0.9);
     }
 }
 
@@ -251,7 +273,6 @@ html, body {
     position: relative;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     font-size: 13px;
-    transform: translateZ(0);
 }
 
 .main-content::before {
@@ -259,10 +280,10 @@ html, body {
     position: absolute;
     inset: 0;
     background: repeating-linear-gradient(to bottom,
-        rgba(0, 255, 255, 0.03) 0px,
-        rgba(0, 255, 255, 0.03) 1px,
+        rgba(0, 255, 255, 0.05) 0px,
+        rgba(0, 255, 255, 0.05) 1px,
         transparent 2px,
-        transparent 4px);
+        transparent 3px);
     opacity: 0.3;
     pointer-events: none;
 }
@@ -308,12 +329,13 @@ html, body {
     border-radius: 50%;
     background: cyan;
     box-shadow: 0 0 8px cyan;
-    animation: ping 1.5s ease-in-out infinite;
+    animation: ping 1.3s ease-in-out infinite;
 }
 
 @keyframes ping {
-    0%, 100% { opacity: 0.6; transform: scale(0.9); }
-    50% { opacity: 1; transform: scale(1.2); }
+    0% { transform: scale(0.9); opacity: 0.8; }
+    50% { transform: scale(1.3); opacity: 1; }
+    100% { transform: scale(0.9); opacity: 0.8; }
 }
 
 /* ========== LOG WINDOW ========== */
@@ -326,15 +348,12 @@ html, body {
     overflow-y: auto;
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 8px;
     color: #dff8ff;
     font-family: "Consolas", "Courier New", monospace;
     font-size: 12px;
     background: radial-gradient(circle at top, rgba(0, 40, 80, 0.25), transparent 55%);
     border-radius: 2px;
-    -webkit-overflow-scrolling: touch;
-    transform: translateZ(0);
-    will-change: scroll-position;
 }
 
 .log-window::-webkit-scrollbar {
@@ -347,7 +366,6 @@ html, body {
 }
 
 /* ========== MESSAGE BUBBLES ========== */
-
 .log-line {
     max-width: 75%;
     padding: 8px 12px;
@@ -358,8 +376,6 @@ html, body {
     opacity: 1;
     transform: translateY(0) scale(1);
     animation: messagePop 0.08s ease-out;
-    transform: translateZ(0);
-    will-change: transform;
 }
 
 @keyframes messagePop {
@@ -376,7 +392,7 @@ html, body {
     color: #ffffff;
     text-align: right;
     margin-left: auto;
-    box-shadow: 0 0 8px rgba(0, 191, 255, 0.15);
+    box-shadow: 0 0 10px rgba(0, 191, 255, 0.2);
     transform-origin: bottom right;
 }
 
@@ -402,7 +418,7 @@ html, body {
     color: #aeefff;
     text-shadow: 0 0 6px rgba(0, 255, 255, 0.8);
     margin-right: auto;
-    box-shadow: 0 0 8px rgba(0, 255, 255, 0.1);
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.15);
     transform-origin: bottom left;
 }
 
@@ -436,26 +452,24 @@ html, body {
     text-align: right;
 }
 
-/* ========== TYPING INDICATOR - FAST ANIMATION ========== */
-
+/* ========== TYPING INDICATOR ========== */
 .typing-container {
     align-self: flex-start !important;
     background: rgba(0, 255, 255, 0.1) !important;
     border: 1px solid rgba(0, 255, 255, 0.3) !important;
     border-radius: 12px 12px 12px 2px !important;
-    padding: 10px 14px !important;
+    padding: 12px 16px !important;
     margin: 2px 0 !important;
-    max-width: 65px !important;
-    min-width: 55px !important;
+    max-width: 70px !important;
+    min-width: 60px !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    box-shadow: 0 0 10px rgba(0, 255, 255, 0.15) !important;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.2) !important;
     position: relative !important;
     opacity: 1;
     transform: translateY(0) scale(1);
     animation: messagePop 0.08s ease-out;
-    will-change: transform;
 }
 
 .typing-container::after {
@@ -480,37 +494,28 @@ html, body {
 
 .typing-dots {
     display: flex;
-    gap: 3px;
+    gap: 4px;
     align-items: center;
     justify-content: center;
-    height: 14px;
+    height: 16px;
 }
 
-/* ========== FAST TYPING DOTS - 0.6s TOTAL ========== */
+/* FAST TYPING DOTS - 0.6s */
 .typing-dots .dot {
-    width: 5px;
-    height: 5px;
+    width: 6px;
+    height: 6px;
     background: var(--neon);
     border-radius: 50%;
-    /* FAST 0.6s total animation */
     animation: fastBounce 0.6s ease-in-out infinite;
-    will-change: transform;
 }
 
 .typing-dots .dot:nth-child(1) { animation-delay: 0s; }
 .typing-dots .dot:nth-child(2) { animation-delay: 0.1s; }
 .typing-dots .dot:nth-child(3) { animation-delay: 0.2s; }
 
-/* Quick bounce - less movement */
 @keyframes fastBounce {
-    0%, 80%, 100% { 
-        transform: translateY(0); 
-        opacity: 0.3; 
-    }
-    40% { 
-        transform: translateY(-3px); 
-        opacity: 1; 
-    }
+    0%, 80%, 100% { transform: translateY(0); opacity: 0.3; }
+    40% { transform: translateY(-3px); opacity: 1; }
 }
 
 /* ========== INPUT AREA ========== */
@@ -523,7 +528,6 @@ html, body {
     align-items: center;
     gap: 6px;
     font-family: "Consolas", "Courier New", monospace;
-    transform: translateZ(0);
 }
 
 .console-input .prompt {
@@ -540,15 +544,14 @@ html, body {
     outline: none;
     color: #e8faff;
     font-size: 12px;
-    transition: none;
-}
-
-.console-input input:focus {
-    box-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
 }
 
 .console-input input::placeholder {
     color: rgba(160, 220, 255, 0.6);
+}
+
+.console-input input:focus {
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
 }
 
 .console-input button {
@@ -562,16 +565,18 @@ html, body {
     letter-spacing: 0.08em;
     text-transform: uppercase;
     cursor: pointer;
-    transition: all 0.15s;
+    transition: 0.18s ease-out;
 }
 
 .console-input button:hover {
     background: rgba(255, 255, 255, 0.9);
     color: #001018;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.9);
 }
 
 .console-input button:active {
     transform: translateY(1px);
+    box-shadow: 0 0 4px rgba(0, 255, 255, 0.7);
 }
 
 /* ========== RESPONSIVE ========== */
@@ -610,7 +615,7 @@ html, body {
     .sidebar {
         width: 240px;
         margin-left: -240px !important;
-        transition: margin-left 0.25s ease;
+        transition: margin-left 0.3s ease;
     }
     
     .sidebar.open {
@@ -656,7 +661,10 @@ html, body {
         gap: 6px;
     }
     
-    .console-input input,
+    .console-input input {
+        width: 100%;
+    }
+    
     .console-input button {
         width: 100%;
     }
