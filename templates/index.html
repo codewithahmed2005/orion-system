@@ -8,7 +8,7 @@
 </head>
 <body>
 
-    <!-- Sidebar (Naya) -->
+    <!-- Sidebar -->
     <div class="sidebar" id="sidebar">
         <div class="sidebar-header">
             <h3>ORION SYSTEM</h3>
@@ -22,11 +22,11 @@
         </div>
     </div>
 
-    <!-- Main Content (Original Design) -->
+    <!-- Main Content -->
     <div class="main-wrapper" id="mainWrapper">
 
-        <!-- Top Border (Original) -->
-        <div class="svg-frame">
+        <!-- TOP BORDER - Original Complex Design -->
+        <div class="svg-frame top">
             <svg viewBox="-40 0 1200 140" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
                 <defs>
                     <filter id="glow" x="-50%" y="-300%" width="200%" height="700%">
@@ -54,20 +54,24 @@
                     </linearGradient>
                 </defs>
                 <g transform="translate(20,20)">
+                    <!-- Background glow rect -->
                     <g transform="translate(0,-15)" opacity="0.95">
                         <rect x="12" y="34" width="1035" height="45" rx="8" fill="rgba(0, 150, 255, 0.18)"
                             stroke="rgba(0, 200, 255, 0.65)" stroke-width="1.4"
                             style="filter: blur(3px) drop-shadow(0 0 6px rgba(0,180,255,0.8));"></rect>
                     </g>
+                    <!-- Shadow path -->
                     <g transform="translate(0,8)" opacity="0.25">
                         <path d="M10 30 H200 l35 10 H1020 l28 -12" fill="none" stroke="rgba(0,0,0,0.6)"
                             stroke-linecap="round" stroke-linejoin="round" stroke-width="10" style="filter: blur(6px);" />
                     </g>
+                    <!-- Main gradient line with glow -->
                     <g transform="translate(0,0)" opacity="0.68">
                         <path d="M10 28 H220 l35 10 H1020 l28 -12" fill="none" stroke="url(#lineGrad)"
                             stroke-linecap="round" stroke-linejoin="round" stroke-width="5" filter="url(#glow)" />
                         <path d="M10 30 H200 l35 10 H1020 l28 -12" fill="none" stroke="#bbffff" stroke-linecap="round"
                             stroke-linejoin="round" stroke-width="1.4" />
+                        <!-- Spark dots -->
                         <g class="spark" opacity="0.55">
                             <circle cx="200" cy="28" r="4" fill="#bfffff" filter="url(#glowFast)" />
                             <circle cx="420" cy="34" r="3.2" fill="#bfffff" filter="url(#glowFast)" />
@@ -75,16 +79,19 @@
                                 filter="url(#glowFast)" />
                         </g>
                     </g>
+                    <!-- Bright white line -->
                     <g transform="translate(0,6)" opacity="1">
                         <path d="M10 30 H200 l35 10 H1020 l28 -12" fill="none" stroke="url(#lineGrad)"
                             stroke-linecap="round" stroke-linejoin="round" stroke-width="6" filter="url(#glow)" />
                         <path d="M10 30 H200 l35 10 H1020 l28 -12" fill="none" stroke="#ffffff" stroke-linecap="round"
                             stroke-linejoin="round" stroke-width="2" />
                     </g>
+                    <!-- Dim line below -->
                     <g transform="translate(0,12)" opacity="0.48">
                         <path d="M10 32 H180 l35 10 H1020 l28 -12" fill="none" stroke="rgba(0,191,255,0.35)"
                             stroke-linecap="round" stroke-linejoin="round" stroke-width="4" />
                     </g>
+                    <!-- Decorative rects -->
                     <g transform="translate(430,36)" opacity="0.18">
                         <rect x="0" y="0" width="6" height="36" rx="2" fill="rgba(0,191,255,0.12)"
                             style="filter: blur(1px)" />
@@ -121,8 +128,8 @@
             </div>
         </div>
 
-        <!-- Bottom border (Original) -->
-        <div class="svg-frame">
+        <!-- BOTTOM BORDER - Original Complex Design -->
+        <div class="svg-frame bottom">
             <svg viewBox="-40 0 1200 140" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
                 <defs>
                     <filter id="glow2" x="-50%" y="-300%" width="200%" height="700%">
@@ -150,20 +157,24 @@
                     </linearGradient>
                 </defs>
                 <g transform="translate(20,20)">
+                    <!-- Background glow rect -->
                     <g transform="translate(0,-15)" opacity="0.95">
                         <rect x="-60" y="34" width="1170" height="45" rx="8" fill="rgba(0, 150, 255, 0.18)"
                             stroke="rgba(0, 200, 255, 0.65)" stroke-width="1.4"
                             style="filter: blur(3px) drop-shadow(0 0 6px rgba(0,180,255,0.8));"></rect>
                     </g>
+                    <!-- Shadow path -->
                     <g transform="translate(0,8)" opacity="0.25">
                         <path d="M-60 30 H-50 l10 10 H1090 l28 0" fill="none" stroke="rgba(0,0,0,0.6)"
                             stroke-linecap="round" stroke-linejoin="round" stroke-width="10" style="filter: blur(6px);" />
                     </g>
+                    <!-- Main gradient line with glow -->
                     <g transform="translate(0,0)" opacity="0.68">
                         <path d="M-60 28 H-50 l10 10 H1090 l28 0" fill="none" stroke="url(#lineGrad2)"
                             stroke-linecap="round" stroke-linejoin="round" stroke-width="5" filter="url(#glow2)" />
                         <path d="M-60 30 H-50 l10 10 H1090 l28 0" fill="none" stroke="#bbffff" stroke-linecap="round"
                             stroke-linejoin="round" stroke-width="1.4" />
+                        <!-- Spark dots -->
                         <g class="spark" opacity="0.55">
                             <circle cx="200" cy="28" r="4" fill="#bfffff" filter="url(#glowFast2)" />
                             <circle cx="420" cy="34" r="3.2" fill="#bfffff" filter="url(#glowFast2)" />
@@ -171,16 +182,19 @@
                                 filter="url(#glowFast2)" />
                         </g>
                     </g>
+                    <!-- Bright white line -->
                     <g transform="translate(0,6)" opacity="1">
                         <path d="M-60 30 H-55 l10 10 H1090 l28 0" fill="none" stroke="url(#lineGrad2)"
                             stroke-linecap="round" stroke-linejoin="round" stroke-width="6" filter="url(#glow2)" />
                         <path d="M-60 30 H-55 l10 10 H1090 l28 0" fill="none" stroke="#ffffff" stroke-linecap="round"
                             stroke-linejoin="round" stroke-width="2" />
                     </g>
+                    <!-- Dim line below -->
                     <g transform="translate(0,12)" opacity="0.48">
                         <path d="M-60 32 H-50 l10 10 H1090 l28 0" fill="none" stroke="rgba(0,191,255,0.35)"
                             stroke-linecap="round" stroke-linejoin="round" stroke-width="4" />
                     </g>
+                    <!-- Decorative rects -->
                     <g transform="translate(430,36)" opacity="0.18">
                         <rect x="0" y="0" width="6" height="36" rx="2" fill="rgba(0,191,255,0.12)"
                             style="filter: blur(1px)" />
